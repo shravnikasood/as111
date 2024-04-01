@@ -1,0 +1,27 @@
+name: Test Find Lowest Number
+
+on:
+  push: 
+    branches: [ main ]  # You might adjust the branch name 
+
+jobs:
+  test-find-lowest-number:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout the repository code
+
+      - name: Test with multiple numbers
+        run: |
+          python3 find_lowest_number.py test_data/test1_input.txt output.txt
+          diff output.txt test_data/test1_expected.txt || echo "::error file=test_workflow.yml,line=0,col=0::Test 1 failed"
+
+      - name: Test with single number
+        run: |
+          python3 find_lowest_number.py test_data/test2_input.txt output.txt
+          diff output.txt test_data/test2_expected.txt || echo "::error file=test_workflow.yml,line=0,col=0::Test 2 failed"
+
+      - name: Test with blank input
+        run: |
+          python3 find_lowest_number.py test_data/test3_input.txt output.txt
+          diff output.txt test_data/test3_expected.txt || echo "::error file=test_workflow.yml,line=0,col=0::Test 3 failed"
