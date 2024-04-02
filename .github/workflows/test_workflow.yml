@@ -37,6 +37,7 @@ jobs:
     - name: Test blank file
       run: |
         python find_lowest_number.py test_data/test3_input.txt test3_output.txt
+        diff test3_output.txt test_data/test3_expected.txt
         # Post-process output to convert float to int if applicable
         awk '{if ($1 == int($1)) print int($1); else print $1;}' test3_output.txt > temp.txt && mv temp.txt test3_output.txt
         diff test3_output.txt test_data/test3_expected.txt
