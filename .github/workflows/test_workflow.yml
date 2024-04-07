@@ -38,5 +38,3 @@ jobs:
       run: |
         python find_lowest_number.py test_data/test3_input.txt test3_output.txt
         
-
-
